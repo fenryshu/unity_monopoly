@@ -16,7 +16,16 @@ public class player : MonoBehaviour
         
     }
 
-    public void run(){
+    public void run()
+    {
+    //     float threshold = 0.1f; // Adjust the threshold value as needed
+    //      if (Vector3.Distance(transform.position, fromChannel.manager_channel[channel_new].channels.position) > threshold)
+    // {
+    //     Vector3 targetPosition = fromChannel.manager_channel[channel_new].channels.position;
+    //     Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, fromChannel.speed * Time.deltaTime);
+    //     rb.MovePosition(newPosition);
+    //     Debug.Log("Moving to channel " + channel_new);
+
         if(transform.position != fromChannel.manager_channel[channel_new].channels.position){
             Vector3 box = Vector3.MoveTowards(transform.position,fromChannel.manager_channel[channel_new].channels.position,fromChannel.speed*Time.deltaTime);
             rb.MovePosition(box);
@@ -24,6 +33,8 @@ public class player : MonoBehaviour
         }
         else{
             print("2");
+            // Debug.Log("Arrived at channel " + channel_new);
+            channel_new = (channel_new + 1)% fromChannel.manager_channel.Count;
         }
     }
 }
