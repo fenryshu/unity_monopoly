@@ -6,35 +6,23 @@ public class player : MonoBehaviour
 {
     public managerChannel fromChannel;
     public int channel_new;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     void Start() {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update() {
         run();
-
-        
     }
 
-    public void run()
-    {
-    //     float threshold = 0.1f; // Adjust the threshold value as needed
-    //      if (Vector3.Distance(transform.position, fromChannel.manager_channel[channel_new].channels.position) > threshold)
-    // {
-    //     Vector3 targetPosition = fromChannel.manager_channel[channel_new].channels.position;
-    //     Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, fromChannel.speed * Time.deltaTime);
-    //     rb.MovePosition(newPosition);
-    //     Debug.Log("Moving to channel " + channel_new);
-
+    public void run(){
         if(transform.position != fromChannel.manager_channel[channel_new].channels.position){
-            Vector3 box = Vector3.MoveTowards(transform.position,fromChannel.manager_channel[channel_new].channels.position,fromChannel.speed*Time.deltaTime);
+            Vector2 box = Vector2.MoveTowards(transform.position,fromChannel.manager_channel[channel_new].channels.position,fromChannel.speed*Time.deltaTime);
             rb.MovePosition(box);
             print("1");
         }
         else{
             print("2");
-            // Debug.Log("Arrived at channel " + channel_new);
-            channel_new = (channel_new + 1)% fromChannel.manager_channel.Count;
+            channel_new = (channel_new + 1) % fromChannel.manager_channel.Count;
         }
     }
 }
