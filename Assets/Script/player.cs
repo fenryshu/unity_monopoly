@@ -6,12 +6,22 @@ public class player : MonoBehaviour
 {
     public managerChannel fromChannel;
     public int channel_new;
+    public int countBox;
+    public int boxIng;
     private Rigidbody rb;
+    public bool ready;
     void Start() {
         rb = GetComponent<Rigidbody>();
     }
     void Update() {
-        run();
+        if(ready == true){
+            run();
+        }
+    }
+
+    public void enter_numberBox(int _inbex){
+        countBox = _inbex;
+        ready = true;
     }
 
     public void run(){
@@ -25,6 +35,18 @@ public class player : MonoBehaviour
         else{
             print("2");
             channel_new = (channel_new + 1) % fromChannel.manager_channel.Count;
+            if(countBox > 0){
+                countBox -=1;
+            }
+            else{
+                ready = false;
+                if(channel_new == 0){
+                    boxIng = fromChannel.manager_channel.Count;
+                }
+                else{
+                    boxIng = (channel_new);
+                }
+            }
         }
     }
 }
