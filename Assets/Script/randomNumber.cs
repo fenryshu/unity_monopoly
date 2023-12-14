@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class randomNumber : MonoBehaviour
 {
-    public player c_player;
+    public manager_Turn C_manager_Turn;
      public TextMeshProUGUI txt_number;
     
     public int number;
@@ -24,7 +24,7 @@ public class randomNumber : MonoBehaviour
     public void Bnt_random(){
         number = Random_number();
         txt_number.text = number.ToString();
-        c_player.enter_numberBox(number);
+        C_manager_Turn.runTurn(number);
     }
 
     public static int Random_number(){
